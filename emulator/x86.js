@@ -17,3 +17,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 var x86;
+
+// register memory
+var reg = new Int32Array(16);
+
+// RAM (32MB)
+var mem = new Uint32Array(8388608);
+
+// L1
+var csh = {};
+  
+
+// gen. purpose registers
+var eax = 0, ebx = 1, ecx = 2, edx = 3;
+
+// indexes, stack, base, instr. pointers
+var esi = 4, edi = 5, ebp = 6, iep = 7, esp = 8;
+
+// seg. registers
+var cs = 9, ds = 10, es = 11, fs = 12, gs = 13, ss = 14;
+
+// error/indicator
+var eflags = 15;
+
+
