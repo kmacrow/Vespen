@@ -1,7 +1,7 @@
 x86.js
 ======
 
-x86.js is an x86 CPU emulator written in JavaScript. It is designed to run in any HTML5 browser. You can run multiple
+x86.js is a 32-bit x86 CPU emulator written in JavaScript. It is designed to run in an HTML5 browser. You can run multiple
 instances of the emulator (using WebWorkers) to simulate SMP.
 
 There is also a node.js server that can be used to build a NUMA machine out of several emulators running in different
