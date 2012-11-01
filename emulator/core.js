@@ -1,5 +1,5 @@
 /*
-x86.js - An x86 CPU emulator in JavaScript
+core.js - An x86 CPU emulator in JavaScript
 Copyright (C) 2012  Kalan MacRow <kalanwm at cs dot ubc dot ca>
 
 This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,6 @@ var x86;
 
 // register memory
 var reg = new Int32Array(16);
-
-// RAM (32MB)
-var mem = new Uint32Array(8388608);
-
-// L1
-var csh = {};
   
 
 // gen. purpose registers
@@ -39,5 +33,12 @@ var cs = 9, ds = 10, es = 11, fs = 12, gs = 13, ss = 14;
 
 // error/indicator
 var eflags = 15;
+
+
+self.onmessage = function __intr__(msg){
+    
+};
+
+self.postMessage({});
 
 
