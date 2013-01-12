@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mkdir -p 0dir
+umount -d 0dir 2>/dev/null
+mount -o loop hda.bin 0dir

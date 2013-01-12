@@ -1,0 +1,13 @@
+This directory contains the code necessary to build the Linux starter
+for the JS PC emulator.
+
+
+config_linux-2.6.20 contains the Linux kernel configuration -fabrice
+patch_linux-2.6.20 contains the Linux kernel patch -fabrice
+linux-2.6.20-build.patch contains patches to build on modern gcc toolchains -mark
+
+The 'kernel' target of the Makefile shows how to build the
+vmlinux.bin uncompressed kernel image.
+
+show_boot_time.c is the program which displays the boot time (compiled
+with uClibc).

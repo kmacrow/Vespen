@@ -1,0 +1,10 @@
+#!/bin/sh
+
+exec >hda.bin
+i=0
+while true; do
+	file=`printf "hda%09u.bin" $i`
+	test -f "$file" || break
+	cat -- "$file"  || { rm hda.bin; exit 1; }
+	true $((i++))
+done

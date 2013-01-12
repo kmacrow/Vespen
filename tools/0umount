@@ -1,0 +1,3 @@
+#!/bin/sh
+
+umount -d 0dir

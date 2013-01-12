@@ -1,0 +1,14 @@
+#!/bin/sh
+
+rm hda0*.bin
+exec <hda.bin
+i=0
+while true; do
+	file=`printf "hda%09u.bin" $i`
+	dd bs=$((64*1024)) count=1 >"$file" 
+	if test "`stat -c '%s' "$file"`" = 0; then
+		rm "$file"
+		exit 0
+	fi
+	true $((i++))
+done

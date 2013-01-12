@@ -1,0 +1,5 @@
+Getting 2.6.20 kernel building on 64 bit using modern gcc toolchain:
+#include <linux/limits.h> in scripts/mod/sumversion.c
+arch/i386/kernel/Makefile change -m elf_i386 to -m32
+add __attribute_used__ in kernel/mutex.c's __mutex_{un,}lock_slowpath
+make ARCH=i386 ...

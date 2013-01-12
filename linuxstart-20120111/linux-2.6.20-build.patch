@@ -1,0 +1,59 @@
+diff -r 207eb3c85691 arch/i386/kernel/Makefile
+--- a/arch/i386/kernel/Makefile	Thu Nov 15 14:13:30 2012 -0800
++++ b/arch/i386/kernel/Makefile	Thu Nov 15 14:27:40 2012 -0800
+@@ -56,7 +56,7 @@
+ 
+ # The DSO images are built using a special linker script.
+ quiet_cmd_syscall = SYSCALL $@
+-      cmd_syscall = $(CC) -m elf_i386 -nostdlib $(SYSCFLAGS_$(@F)) \
++      cmd_syscall = $(CC) -m32 -nostdlib $(SYSCFLAGS_$(@F)) \
+ 		          -Wl,-T,$(filter-out FORCE,$^) -o $@
+ 
+ export CPPFLAGS_vsyscall.lds += -P -C -U$(ARCH)
+diff -r 207eb3c85691 kernel/mutex.c
+--- a/kernel/mutex.c	Thu Nov 15 14:13:30 2012 -0800
++++ b/kernel/mutex.c	Thu Nov 15 14:27:40 2012 -0800
+@@ -57,7 +57,7 @@
+  * We also put the fastpath first in the kernel image, to make sure the
+  * branch is predicted by the CPU as default-untaken.
+  */
+-static void fastcall noinline __sched
++static void fastcall __attribute_used__ noinline __sched
+ __mutex_lock_slowpath(atomic_t *lock_count);
+ 
+ /***
+@@ -93,7 +93,7 @@
+ 
+ EXPORT_SYMBOL(mutex_lock);
+ 
+-static void fastcall noinline __sched
++static void fastcall __attribute_used__ noinline __sched
+ __mutex_unlock_slowpath(atomic_t *lock_count);
+ 
+ /***
+@@ -189,7 +189,7 @@
+ 	return 0;
+ }
+ 
+-static void fastcall noinline __sched
++static void fastcall __attribute_used__ noinline __sched
+ __mutex_lock_slowpath(atomic_t *lock_count)
+ {
+ 	struct mutex *lock = container_of(lock_count, struct mutex, count);
+@@ -257,7 +257,7 @@
+ /*
+  * Release the lock, slowpath:
+  */
+-static fastcall noinline void
++static fastcall __attribute_used__ noinline void
+ __mutex_unlock_slowpath(atomic_t *lock_count)
+ {
+ 	__mutex_unlock_common_slowpath(lock_count, 1);
+diff -r 207eb3c85691 scripts/mod/sumversion.c
+--- a/scripts/mod/sumversion.c	Thu Nov 15 14:13:30 2012 -0800
++++ b/scripts/mod/sumversion.c	Thu Nov 15 14:27:40 2012 -0800
+@@ -1,3 +1,4 @@
++#include <linux/limits.h>
+ #include <netinet/in.h>
+ #ifdef __sun__
+ #include <inttypes.h>

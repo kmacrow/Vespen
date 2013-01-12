@@ -1,0 +1,8 @@
+#!/bin/sh
+
+dd if=/dev/zero of=0hda_new.bin bs=1M count=3 || exit 1
+mke2fs -F 0hda_new.bin || exit 1
+
+mkdir -p 0dir
+umount -d 0dir 2>/dev/null
+mount -o loop 0hda_new.bin 0dir || sleep 5

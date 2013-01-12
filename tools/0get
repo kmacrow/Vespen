@@ -1,0 +1,6 @@
+#!/bin/sh
+
+i=0
+while ii=`printf "%09u" $i`; wget http://bellard.org/jslinux/hda$ii.bin && sleep 0.005; do
+    true $((i++))
+done
